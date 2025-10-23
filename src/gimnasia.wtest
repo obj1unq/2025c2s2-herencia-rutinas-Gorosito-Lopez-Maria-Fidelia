@@ -106,3 +106,59 @@ describe "rutinas" {
 //	}
 	
 }
+
+
+
+describe "Rutinas sin personas" {
+  test "Correr en la playa 5 mins" {
+	const correrEnLaPlaya = new Running()
+	correrEnLaPlaya.intensidad(1.2)
+	correrEnLaPlaya.tiempoDePractica(5)
+	assert.equals(360, correrEnLaPlaya.conteoCkal())
+  }
+  test "Correr en la playa 90 mins" {
+	const correrEnLaPlaya = new Running()
+	correrEnLaPlaya.intensidad(1.2)
+	correrEnLaPlaya.tiempoDePractica(90)
+	assert.equals(10200, correrEnLaPlaya.conteoCkal())
+  }
+  test "Maraton de BA 5 mins" {
+	const maratonBA = new Maraton()
+	maratonBA.intensidad(1.5)
+	maratonBA.tiempoDePractica(5)
+	assert.equals(900, maratonBA.conteoCkal())
+  }
+  test "Maraton de BA 90 mins" {
+	const maratonBA = new Maraton()
+	maratonBA.intensidad(1.5)
+	maratonBA.tiempoDePractica(90)
+	assert.equals(25500, maratonBA.conteoCkal())
+  }
+  test "Remo 5 mins" {
+	const remarEnElDelta = new Remo()
+	remarEnElDelta.tiempoDePractica(5)
+	remarEnElDelta.inicializar()
+	assert.equals(520, remarEnElDelta.conteoCkal())
+  }
+  test "Remo 90 mins" {
+	const remarEnElDelta = new Remo()
+	remarEnElDelta.tiempoDePractica(90)
+	remarEnElDelta.inicializar()
+	assert.equals(9360, remarEnElDelta.conteoCkal())
+  }
+  test "Remo de competicion 5 mins " {
+	const remarEnElCaminoDeLosRemeros = new RemoDeCompeticion()
+	remarEnElCaminoDeLosRemeros.tiempoDePractica(5)
+	remarEnElCaminoDeLosRemeros.inicializar()
+	assert.equals(510, remarEnElCaminoDeLosRemeros.conteoCkal())
+  }
+  test "Remo de competicion 90 mins " {
+	const remarEnElCaminoDeLosRemeros = new RemoDeCompeticion()
+	remarEnElCaminoDeLosRemeros.tiempoDePractica(90)
+	remarEnElCaminoDeLosRemeros.inicializar()
+	assert.equals(12240, remarEnElCaminoDeLosRemeros.conteoCkal())
+  }
+  
+}
+
+
