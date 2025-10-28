@@ -162,3 +162,145 @@ describe "Rutinas sin personas" {
 }
 
 
+describe "personas" {
+  test "calamardo corre en la playa" {
+
+	const correrEnLaPlaya = new Running()
+	correrEnLaPlaya.intensidad(1.2)
+
+	const calamardo = new Sedentario()
+	calamardo.inicializarSedentarioCon(correrEnLaPlaya)
+	calamardo.peso(60)
+	calamardo.entrenar(correrEnLaPlaya)
+	
+
+	assert.equals(59.948, calamardo.peso())
+  }
+  test "calamardo corre maraton de BA" {
+
+	const correrMaraton = new Maraton()
+	correrMaraton.intensidad(1.5)
+
+	const calamardo = new Sedentario()
+	calamardo.inicializarSedentarioCon(correrMaraton)
+	calamardo.peso(60)
+	calamardo.entrenar(correrMaraton)
+
+	assert.equals(59.871, calamardo.peso())
+  }
+  test "calamardo Rema en el delta" {
+
+	const remoEnDelta = new Remo()
+	remoEnDelta.inicializar()
+
+	const calamardo = new Sedentario()
+	calamardo.inicializarSedentarioCon(remoEnDelta)
+	calamardo.peso(60.0)
+	calamardo.entrenar(remoEnDelta)
+
+
+	assert.equals(59.925, calamardo.peso())
+  }
+
+  test "Calamardo rema en el camino de los remores" {
+
+	const remoEnRemores = new RemoDeCompeticion()
+	remoEnRemores.inicializar()
+
+	const calamardo = new Sedentario()
+	calamardo.inicializarSedentarioCon(remoEnRemores)//Preguntar si puedo evitar inicializar
+	calamardo.peso(60)
+	calamardo.entrenar(remoEnRemores)
+
+	
+	assert.equals(59.927, calamardo.peso())
+  }
+  test "Calamardo bajo peso no rema en el camino de los remores" {
+
+	const remoEnRemores = new RemoDeCompeticion()
+	remoEnRemores.inicializar()
+
+	const calamardo = new Sedentario()
+	calamardo.inicializarSedentarioCon(remoEnRemores)
+	calamardo.peso(50)
+	
+
+	assert.throwsException({ calamardo.entrenar(remoEnRemores) })
+  }
+
+  test "calamardo bajo de peso para maraton BA" {
+
+	const correrMaraton = new Maraton()
+	correrMaraton.intensidad(1.5)
+
+	const calamardo = new Sedentario()
+	calamardo.peso(40)
+	calamardo.inicializarSedentarioCon(correrMaraton)
+
+	
+	assert.throwsException({ calamardo.entrenar(correrMaraton) })
+
+  }
+
+  test "bob corre en la playa" {
+	const correrEnLaPlaya = new Running()
+	correrEnLaPlaya.intensidad(1.2)
+
+	const bob = new Atleta()
+	bob.peso(40)
+	bob.inicializarAtletaCon(correrEnLaPlaya)
+	bob.entrenar(correrEnLaPlaya)
+	
+	//assert.equals(10200, correrEnLaPlaya.conteoCkal())
+	//assert.equals(40, bob.peso())
+	//assert.equals(8000, bob.kilosPorCaloria())
+	//assert.equals(1.275, bob.verificar(correrEnLaPlaya))
+	assert.equals(39.725, bob.peso())
+  }
+
+  test "bob corre maraton BA" {
+	const maratonBA = new Maraton()
+	maratonBA.intensidad(1.5)
+
+	const bob = new Atleta()
+	bob.peso(40)
+	bob.inicializarAtletaCon(maratonBA)
+	bob.entrenar(maratonBA)
+
+	assert.equals(37.812, bob.peso())
+  }
+
+  test "bob rema en el delta" {
+	const remoEnElDelta = new Remo()
+	remoEnElDelta.inicializar()
+
+	const bob = new Atleta()
+	bob.peso(40)
+	bob.inicializarAtletaCon(remoEnElDelta)
+
+	assert.throwsException({ bob.entrenar(remoEnElDelta) })
+	assert.equals(40, bob.peso())
+  }
+  test "bob rema en el camino de los remores" {
+	const remoDeRemores = new RemoDeCompeticion()
+	remoDeRemores.inicializar()
+
+	const bob = new Atleta()
+	bob.peso(40)
+	bob.inicializarAtletaCon(remoDeRemores)
+	bob.entrenar(remoDeRemores)
+
+	assert.equals(39.406, bob.peso())
+  }
+
+
+    
+}
+
+describe "Clubes" {
+  test "Prueba" {
+	const nuevoClub = new Club()
+  	
+	assert.equals((#{1,2,4}), nuevoClub.verPredos())
+  }
+}

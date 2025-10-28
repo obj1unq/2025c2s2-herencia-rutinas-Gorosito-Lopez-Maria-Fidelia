@@ -32,7 +32,7 @@ class Maraton inherits Running{
 
 class Remo inherits Rutina{
     override method descanso(){
-        return self.tiempoDePractica().div(5)
+        return self.tiempoDePractica()/5
     }
     method inicializar(){
         self.intensidad(1.3)
@@ -45,15 +45,87 @@ class RemoDeCompeticion inherits Remo{
         self.intensidad(1.7)
     }
     override method descanso(){
-        return (2).max(super())
+        return (2).max(super()-3)
     }
 }
 
-class Persona{
-    method peso(){
-
+class Persona {
+    var property kilosPorCaloria = null
+    var property peso = 0
+    method pesoPerdidoCon(rutina){
+        return (peso - rutina.conteoCkal()/self.kilosPorCaloria()).truncate(3)
     }
-    method pesoPerdido(){
+    method entrenar(rutina){
+        self.peso(self.pesoPerdidoCon(rutina))
+    }
+
+}
+
+class Sedentario inherits Persona{
+
+    method inicializarSedentarioCon(rutina){
+        self.kilosPorCaloria(7000)
+        rutina.tiempoDePractica(5)
+    }
+    
+    method validarPeso(){
+        if(self.peso()<=50){
+            self.error("No pesa lo suficiente")
+        }
+    }
+    override method entrenar(rutina){
+        self.validarPeso()
+        super(rutina)
+    }
+}
+
+class Atleta inherits Persona{
+
+    override method pesoPerdidoCon(rutina){
+        return (super(rutina)+1).truncate(3)
+    }
+    /*
+    method verificar(rutina){
+        self.inicializarAtletaCon(rutina)
+        return rutina.conteoCkal()/self.kilosPorCaloria()
+    }*/
+
+    method inicializarAtletaCon(rutina){
+        rutina.tiempoDePractica(90)
+        self.kilosPorCaloria(8000)
+    }
+
+    method validarCantidadDeCaloriasGastadas(rutina){
+        if (rutina.conteoCkal() <= 10000 ){
+            self.error("No es muy gymbro de tu parte esta rutina")
+        }
+    }
+    override method entrenar(rutina){
+        self.validarCantidadDeCaloriasGastadas(rutina) 
+        //La idea es usar entrenar dentro del throw si se sabe que va a fallar 
+        super(rutina)
+    }
+}
+
+class Club{
+    var property predios = [predio1,predio2]
+
+    method mejorPredioPara(persona){
         
     }
+
+    method prediosTranquisPara(persoma){
+
+    }
+
+    method rutinasMasExigentesPara(persona){
+
+    }
+}
+
+object predio1{
+
+}
+object predio2{
+    
 }
