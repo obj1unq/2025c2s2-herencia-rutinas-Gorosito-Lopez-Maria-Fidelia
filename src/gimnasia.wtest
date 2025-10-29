@@ -169,7 +169,6 @@ describe "personas" {
 	correrEnLaPlaya.intensidad(1.2)
 
 	const calamardo = new Sedentario()
-	calamardo.inicializarSedentarioCon(correrEnLaPlaya)
 	calamardo.peso(60)
 	calamardo.entrenar(correrEnLaPlaya)
 	
@@ -182,7 +181,6 @@ describe "personas" {
 	correrMaraton.intensidad(1.5)
 
 	const calamardo = new Sedentario()
-	calamardo.inicializarSedentarioCon(correrMaraton)
 	calamardo.peso(60)
 	calamardo.entrenar(correrMaraton)
 
@@ -194,7 +192,6 @@ describe "personas" {
 	remoEnDelta.inicializar()
 
 	const calamardo = new Sedentario()
-	calamardo.inicializarSedentarioCon(remoEnDelta)
 	calamardo.peso(60.0)
 	calamardo.entrenar(remoEnDelta)
 
@@ -208,7 +205,6 @@ describe "personas" {
 	remoEnRemores.inicializar()
 
 	const calamardo = new Sedentario()
-	calamardo.inicializarSedentarioCon(remoEnRemores)//Preguntar si puedo evitar inicializar
 	calamardo.peso(60)
 	calamardo.entrenar(remoEnRemores)
 
@@ -221,7 +217,6 @@ describe "personas" {
 	remoEnRemores.inicializar()
 
 	const calamardo = new Sedentario()
-	calamardo.inicializarSedentarioCon(remoEnRemores)
 	calamardo.peso(50)
 	
 
@@ -235,7 +230,6 @@ describe "personas" {
 
 	const calamardo = new Sedentario()
 	calamardo.peso(40)
-	calamardo.inicializarSedentarioCon(correrMaraton)
 
 	
 	assert.throwsException({ calamardo.entrenar(correrMaraton) })
@@ -248,7 +242,6 @@ describe "personas" {
 
 	const bob = new Atleta()
 	bob.peso(40)
-	bob.inicializarAtletaCon(correrEnLaPlaya)
 	bob.entrenar(correrEnLaPlaya)
 	
 	//assert.equals(10200, correrEnLaPlaya.conteoCkal())
@@ -264,7 +257,6 @@ describe "personas" {
 
 	const bob = new Atleta()
 	bob.peso(40)
-	bob.inicializarAtletaCon(maratonBA)
 	bob.entrenar(maratonBA)
 
 	assert.equals(37.812, bob.peso())
@@ -276,18 +268,17 @@ describe "personas" {
 
 	const bob = new Atleta()
 	bob.peso(40)
-	bob.inicializarAtletaCon(remoEnElDelta)
 
 	assert.throwsException({ bob.entrenar(remoEnElDelta) })
 	assert.equals(40, bob.peso())
   }
+  
   test "bob rema en el camino de los remores" {
 	const remoDeRemores = new RemoDeCompeticion()
 	remoDeRemores.inicializar()
 
 	const bob = new Atleta()
 	bob.peso(40)
-	bob.inicializarAtletaCon(remoDeRemores)
 	bob.entrenar(remoDeRemores)
 
 	assert.equals(39.406, bob.peso())
@@ -297,10 +288,3 @@ describe "personas" {
     
 }
 
-describe "Clubes" {
-  test "Prueba" {
-	const nuevoClub = new Club()
-  	
-	assert.equals((#{1,2,4}), nuevoClub.verPredos())
-  }
-}
